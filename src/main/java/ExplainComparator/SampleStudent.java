@@ -1,7 +1,7 @@
 package ExplainComparator;
 import java.util.TreeSet;
 
-public class SampleTeacher {
+public class SampleStudent {
     public static void main(String[] args) {
         Student dev=new Student(12, "Debabrat", 9.0f);
         Student manshi=new Student(34, "Manshi", 8.5f);
