@@ -7,7 +7,15 @@ public class OverridingChildClass extends OverridingBase{
         System.out.println("or we can say overriden instance method");
     }
 
+    //constructor from parent class can not be directly overridden,
+    // so we use super to call parent class's instance
+    public OverridingChildClass()
+    {
+        super();
+    }
+
     public static void main(String[] args) {
         new OverridingChildClass().m1();
+        new OverridingChildClass();
     }
 }
