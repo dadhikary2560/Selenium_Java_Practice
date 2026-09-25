@@ -20,7 +20,7 @@ public class XpathOperation {
         driver.findElement(By.xpath("//li[contains(@id,\"menu-item-39525\")]/child::a")).click();
 
         WebElement e= driver.findElement(By.xpath("//label[contains(text(),\"Full Name\")]/following-sibling::input"));
-//        driver.quit();
         e.sendKeys("Debabrat Adhikary");
+        driver.quit();
     }
 }
