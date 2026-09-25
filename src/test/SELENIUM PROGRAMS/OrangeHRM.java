@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class XpathOperation {
+public class OrangeHRM {
     static RemoteWebDriver driver=new ChromeDriver();
-    static WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+    static WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
     static Actions act=new Actions(driver);
 
     public static void skillio()
@@ -35,14 +35,31 @@ public class XpathOperation {
         driver.findElement(By.xpath("//button[contains(@class, 'oxd-button--main orangehrm-login-button')]")).click();
 
         //dashboard, hover on Assign Leave icon
+        wait.pollingEvery(Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@title,'Assign Leave')]")));
         act.moveToElement(driver.findElement(By.xpath("//button[contains(@title,'Assign Leave')]")));
         act.perform();          //action class can only perform with the perform method
 
 
-        //going to profile icon
+        //going to profile icon and logout
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class, 'oxd-userdropdown-tab')]")));
         driver.findElement(By.xpath("//span[contains(@class, 'oxd-userdropdown-tab')]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()=\"Logout\"]")));
+        driver.findElement(By.xpath("//a[text()=\"Logout\"]")).click();
+
+        //doing login again
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@placeholder, \"Username\")]")));
+        driver.findElement(By.xpath("//input[contains(@placeholder, \"Username\")]")).sendKeys("Admin");
+        driver.findElement(By.xpath("//input[contains(@placeholder, \"Password\")]")).sendKeys("admin123");
+        driver.findElement(By.xpath("//button[contains(@class, 'oxd-button--main orangehrm-login-button')]")).click();
+
+        //refreshing page to see if dashboard is still active during an active session
+        driver.navigate().refresh();
+
+        //going to admin page
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'/web/index.php/admin/viewAdminModule')]")));
+        driver.findElement(By.xpath("//a[contains(@href,'/web/index.php/admin/viewAdminModule')]")).click();
+
     }
 
     public static void main(String[] args) {
