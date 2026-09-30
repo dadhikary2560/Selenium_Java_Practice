@@ -81,6 +81,11 @@ public class OrangeHRM {
         driver.findElement(By.xpath("//input[contains(@placeholder, \"First Name\")]")).sendKeys("Debabrat");
         driver.findElement(By.xpath("//input[contains(@placeholder, \"Last Name\")]")).sendKeys("Adhikary");
         driver.findElement(By.xpath("//span[contains(@class, \"oxd-switch-input oxd-switch-input--active --label-right\")]")).click();
+
+        //input field to add user (found xpath using ancestor)
+        driver.findElement(By.xpath("//label[text()=\"Username\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")).sendKeys("DEBADH");
+        driver.findElement(By.xpath("//label[text()=\"Password\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")).sendKeys("deb123");
+
     }
 
     public static void main(String[] args) {
