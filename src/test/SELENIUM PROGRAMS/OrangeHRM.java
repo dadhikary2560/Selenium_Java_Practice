@@ -75,11 +75,12 @@ public class OrangeHRM {
 
         //adding employee to PIM Menu
         driver.findElement(By.xpath("//button[contains(@class, \"oxd-button oxd-button--medium oxd-button--secondary\")]/i")).click();
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@class,\"oxd-file-input\")]/following::button[1]")));
         driver.findElement(By.xpath("//input[contains(@class,\"oxd-file-input\")]")).sendKeys(
-                "D:\\D drive\\images\\Photos-001 (10)\\Dev.jpg"
-        );
+                "D:\\D drive\\images\\Photos-001 (10)\\Dev.jpg");
+        driver.findElement(By.xpath("//input[contains(@placeholder, \"First Name\")]")).sendKeys("Debabrat");
+        driver.findElement(By.xpath("//input[contains(@placeholder, \"Last Name\")]")).sendKeys("Adhikary");
+        driver.findElement(By.xpath("//span[contains(@class, \"oxd-switch-input oxd-switch-input--active --label-right\")]")).click();
     }
 
     public static void main(String[] args) {
