@@ -60,6 +60,26 @@ public class OrangeHRM {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'/web/index.php/admin/viewAdminModule')]")));
         driver.findElement(By.xpath("//a[contains(@href,'/web/index.php/admin/viewAdminModule')]")).click();
 
+        //entering Username as Admin to validate, if this user exists or not
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[contains(@class, \"oxd-input oxd-input--active\")])[2]")));
+        driver.findElement(By.xpath("(//input[contains(@class, \"oxd-input oxd-input--active\")])[2]")).sendKeys("Admin");
+        //or this xpath can be used         //div[contains(@class,"oxd-input-field-bottom-space")]/div/input
+        driver.findElement(By.xpath("//div[contains(@class, \"oxd-form-actions\")]/button[contains(@class, \"orangehrm-left-space\")]")).click();
+
+
+        //now going to PIM menu
+        driver.findElement(By.xpath("//span[text()=\"PIM\"]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()=\"Employee Name\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")));
+        driver.findElement(By.xpath("//label[text()=\"Employee Name\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")).sendKeys("Amelia");
+        driver.findElement(By.xpath("//div[contains(@class,\"oxd-form-actions\")]/button[2]")).click();
+
+        //adding employee to PIM Menu
+        driver.findElement(By.xpath("//button[contains(@class, \"oxd-button oxd-button--medium oxd-button--secondary\")]/i")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@class,\"oxd-file-input\")]/following::button[1]")));
+        driver.findElement(By.xpath("//input[contains(@class,\"oxd-file-input\")]")).sendKeys(
+                "D:\\D drive\\images\\Photos-001 (10)\\Dev.jpg"
+        );
     }
 
     public static void main(String[] args) {
