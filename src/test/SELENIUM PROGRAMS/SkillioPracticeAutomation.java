@@ -12,15 +12,7 @@ public class SkillioPracticeAutomation {
     static RemoteWebDriver driver=new ChromeDriver();
     static WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(60));
     static Actions act=new Actions(driver);
-    public static void skillio() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.get("https://helloskillio.com/");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class,\"dialog-close-button dialog-lightbox-close-button\")]")));
-
-        //remove pop up -> go to free resources -> click on Automation Practice
-        driver.findElement(By.xpath("//a[contains(@class,\"dialog-close-button dialog-lightbox-close-button\")]")).click();
-        driver.findElement(By.xpath("//a[contains(text(),\"Free Resources\")]")).click();
-        driver.findElement(By.xpath("//li[contains(@id,\"menu-item-39525\")]/child::a")).click();
+    public static void skillio1stSection() throws InterruptedException {
 
         //Entering details for
         // 1. Form Elements
@@ -31,17 +23,27 @@ public class SkillioPracticeAutomation {
         driver.findElement(By.xpath("//label[contains(text(), \"Comments\")]/following-sibling::textarea")).sendKeys(
                 "Hi my name is Debabrat Adhikary, i am an Automation Test Engineer, with a relevant experience of 4 years");
         driver.findElement(By.xpath("//button[contains(text(), \"Submit Form\")]")).click();
-
-
+    }
+    public static void skillio2ndSection()
+    {
         //Entering details for
         // 2. Checkbox & Radio
-        driver
+        driver.findElement(By.xpath("//div[contains(@class,\"check\")]/label[text()=\"Selenium\"]")).click();
+        driver.findElement(By.xpath("//div[contains(@class,\"check\")]/label[text()=\"Java\"]")).click();
+        driver.findElement(By.xpath("//div[contains(@class,\"radio\")]/label[text()=\"Advanced\"]")).click();
 
-       /* Thread.sleep(Duration.ofSeconds(5));
-        driver.quit();*/
     }
 
     public static void main(String[] args) throws InterruptedException {
-        skillio();
+        driver.manage().window().maximize();
+        driver.get("https://helloskillio.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class,\"dialog-close-button dialog-lightbox-close-button\")]")));
+
+        //remove pop up -> go to free resources -> click on Automation Practice
+        driver.findElement(By.xpath("//a[contains(@class,\"dialog-close-button dialog-lightbox-close-button\")]")).click();
+        driver.findElement(By.xpath("//a[contains(text(),\"Free Resources\")]")).click();
+        driver.findElement(By.xpath("//li[contains(@id,\"menu-item-39525\")]/child::a")).click();
+        //skillio1stSection();
+        skillio2ndSection();
     }
 }
