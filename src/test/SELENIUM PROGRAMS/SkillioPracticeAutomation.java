@@ -1,12 +1,19 @@
+import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.time.Duration;
+import java.util.List;
 
 public class SkillioPracticeAutomation {
     static RemoteWebDriver driver=new ChromeDriver();
@@ -23,15 +30,33 @@ public class SkillioPracticeAutomation {
         driver.findElement(By.xpath("//label[contains(text(), \"Comments\")]/following-sibling::textarea")).sendKeys(
                 "Hi my name is Debabrat Adhikary, i am an Automation Test Engineer, with a relevant experience of 4 years");
         driver.findElement(By.xpath("//button[contains(text(), \"Submit Form\")]")).click();
-    }
-    public static void skillio2ndSection()
-    {
+
         //Entering details for
         // 2. Checkbox & Radio
         driver.findElement(By.xpath("//div[contains(@class,\"check\")]/label[text()=\"Selenium\"]")).click();
         driver.findElement(By.xpath("//div[contains(@class,\"check\")]/label[text()=\"Java\"]")).click();
         driver.findElement(By.xpath("//div[contains(@class,\"radio\")]/label[text()=\"Advanced\"]")).click();
 
+    }
+
+    public static void thirdSection()
+    {
+        WebElement forSelect=driver.findElement(By.id("country"));
+        Select var=new Select(forSelect);
+        var.selectByValue("India");
+
+        WebElement forMultiSelect=driver.findElement(By.id("skills"));
+        Select select=new Select(forMultiSelect);
+        List<WebElement> multiSelect=List.of("TypeScript","Java");
+        for (WebElement multi: multiSelect)
+        {
+            String value=multi.getText();
+            if(value.equalsIgnoreCase("TypeScript"))
+            {
+                select.selectByVisibleText(value);
+                break;
+            }
+        }
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -44,6 +69,6 @@ public class SkillioPracticeAutomation {
         driver.findElement(By.xpath("//a[contains(text(),\"Free Resources\")]")).click();
         driver.findElement(By.xpath("//li[contains(@id,\"menu-item-39525\")]/child::a")).click();
         //skillio1stSection();
-        skillio2ndSection();
+        thirdSection();
     }
 }
