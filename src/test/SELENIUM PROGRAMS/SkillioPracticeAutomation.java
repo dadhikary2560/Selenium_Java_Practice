@@ -41,22 +41,49 @@ public class SkillioPracticeAutomation {
 
     public static void thirdSection()
     {
+        //Single select
         WebElement forSelect=driver.findElement(By.id("country"));
         Select var=new Select(forSelect);
         var.selectByValue("India");
 
+        //v/s
+        //Multi select
         WebElement forMultiSelect=driver.findElement(By.id("skills"));
         Select select=new Select(forMultiSelect);
-        List<WebElement> multiSelect=List.of("TypeScript","Java");
-        for (WebElement multi: multiSelect)
-        {
-            String value=multi.getText();
-            if(value.equalsIgnoreCase("TypeScript"))
-            {
-                select.selectByVisibleText(value);
-                break;
-            }
-        }
+        List<String> multiSelect=List.of("TypeScript", "Java");
+        for (String multi: multiSelect)
+            select.selectByVisibleText(multi);
+    }
+
+    public static void fourthSection()
+    {
+        // The page uses native HTML date/time inputs. Their calendar popup is browser UI,
+        // so sendKeys enters dates in the displayed dd-MM-yyyy format.
+        String date = "30-06-1994";
+        String startDate = "01-10-2025";
+        String endDate = "15-10-2025";
+
+        WebElement dateField = wait.until(ExpectedConditions.elementToBeClickable(By.id("dob")));
+        dateField.clear();
+        dateField.sendKeys(date);
+
+        // The native time input accepts the displayed time through keyboard entry.
+        WebElement timeField = wait.until(ExpectedConditions.elementToBeClickable(By.id("meetingTime")));
+        timeField.clear();
+        timeField.sendKeys("10:30AM");
+
+        WebElement startDateField = wait.until(ExpectedConditions.elementToBeClickable(By.id("startDate")));
+        startDateField.clear();
+        startDateField.sendKeys(startDate);
+
+        WebElement endDateField = wait.until(ExpectedConditions.elementToBeClickable(By.id("endDate")));
+        endDateField.clear();
+        endDateField.sendKeys(endDate);
+
+        // Submit the values to the page's date-range validator and wait for its success message.
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("dateCheck"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[normalize-space()='Valid date range']")));
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -69,6 +96,7 @@ public class SkillioPracticeAutomation {
         driver.findElement(By.xpath("//a[contains(text(),\"Free Resources\")]")).click();
         driver.findElement(By.xpath("//li[contains(@id,\"menu-item-39525\")]/child::a")).click();
         //skillio1stSection();
-        thirdSection();
+       // thirdSection();
+        fourthSection();
     }
 }

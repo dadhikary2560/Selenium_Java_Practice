@@ -87,7 +87,7 @@ public class OrangeHRM {
         driver.findElement(By.xpath("//label[text()=\"Password\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")).sendKeys("deb1234");
         driver.findElement(By.xpath("//label[text()=\"Confirm Password\"]/ancestor::div[contains(@class,\"oxd-input-group\")]//input")).sendKeys("deb1234");
 
-        driver.findElement(By.className("oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space")).click();
+        driver.findElement(By.xpath("//button[contains(@class,\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space\")]")).click();
     }
 
     public static void main(String[] args) {
