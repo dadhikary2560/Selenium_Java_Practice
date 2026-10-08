@@ -80,6 +80,7 @@ public class OrangeHRM {
                 "D:\\D drive\\images\\Photos-001 (10)\\Dev.jpg");
         driver.findElement(By.xpath("//input[contains(@placeholder, \"First Name\")]")).sendKeys("Debabrat");
         driver.findElement(By.xpath("//input[contains(@placeholder, \"Last Name\")]")).sendKeys("Adhikary");
+        driver.findElement(By.xpath("//label[contains(text(),\"Employee Id\")]/following::div/input[1]")).sendKeys("12341");
         driver.findElement(By.xpath("//span[contains(@class, \"oxd-switch-input oxd-switch-input--active --label-right\")]")).click();
 
         //input field to add user (found xpath using ancestor)
