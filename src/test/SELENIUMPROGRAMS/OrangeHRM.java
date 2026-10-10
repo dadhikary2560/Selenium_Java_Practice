@@ -1,3 +1,4 @@
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,6 +34,8 @@ public class OrangeHRM {
         driver.findElement(By.xpath("//input[contains(@placeholder, \"Username\")]")).sendKeys("Admin");
         driver.findElement(By.xpath("//input[contains(@placeholder, \"Password\")]")).sendKeys("admin123");
         driver.findElement(By.xpath("//button[contains(@class, 'oxd-button--main orangehrm-login-button')]")).click();
+        Shutterbug.shootPage(driver).withName("Login Page").save();
+
 
         //dashboard, hover on Assign Leave icon
         wait.pollingEvery(Duration.ofSeconds(5));
